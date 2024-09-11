@@ -84,7 +84,7 @@ class Backend(PostgresBackend):
         >>> user = os.environ.get("IBIS_TEST_RISINGWAVE_USER", getpass.getuser())
         >>> password = os.environ.get("IBIS_TEST_RISINGWAVE_PASSWORD")
         >>> database = os.environ.get("IBIS_TEST_RISINGWAVE_DATABASE", "dev")
-        >>> con = connect(database=database, host=host, user=user, password=password)
+        >>> con = ibis.risingwave.connect(database=database, host=host, user=user, password=password)
         >>> con.list_tables()  # doctest: +ELLIPSIS
         [...]
         >>> t = con.table("functional_alltypes")
@@ -105,7 +105,6 @@ class Backend(PostgresBackend):
             timestamp_col : timestamp
             year : int32
             month : int32
-
         """
 
         self.con = psycopg2.connect(
